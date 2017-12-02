@@ -24,6 +24,7 @@ namespace AsyncSample.Lib {
 				if (!response.IsSuccessStatusCode) {
 					throw new Exception(string.Format("Error: {0}", response.StatusCode));
 				}
+				Thread.Sleep(3000);
 				return await response.Content.ReadAsStringAsync();
 			}
 		}

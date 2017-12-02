@@ -5,6 +5,9 @@ using System.Windows.Forms;
 using AsyncSample.Lib;
 
 namespace AsyncSample.CSharp {
+	// Form1の代わりにForm2を表示させたい場合は、
+	// Program.Main中の以下の行の"Form1"を"Form2"に変更してください。
+	//   Application.Run(new Form1());
 	public partial class Form2: Form {
 		// Downloaderオブジェクトはフォームで使い回す。
 		// Downloaderオブジェクトに含まれるHttpClientオブジェクトを使いまわし、
@@ -18,34 +21,38 @@ namespace AsyncSample.CSharp {
 			InitializeComponent();
 		}
 
-		private void button1_Click(object sender, EventArgs e) {
-			Action finallyProc = () => {
-				this.button.Enabled = true;
-			};
-			Action<Task<string>> proc = (task) => {
-				try {
-					string message;
-					if (task.Exception == null) {
-						message = string.Format("[{0}] {1}", DateTime.Now, task.Result);
-					} else {
-						message = task.Exception.Message;
-					}
-					this.label.Text = message;
-				} finally {
-					finallyProc();
-				}
-			};
-
+		// asyncを無理やり展開したバージョンのイベントハンドラ
+		private void button_Click(object sender, EventArgs e) {
 			this.button.Enabled = false;
 			try {
-				this.downloader.DownloadText("http://www.msftncsi.com/ncsi.txt").ContinueWith((task) => {
-					// GUIスレッド上で続きを行う。
-					this.Invoke(proc, task);
-				});
+				this.downloader.DownloadText("http://www.msftncsi.com/ncsi.txt").ContinueWith(new Action<Task<string>>(this.ContinuedProc));
 			} catch {
-				finallyProc();
+				FinallyProc();
 				throw;
 			}
+		}
+
+		private void FinallyProc() {
+			this.button.Enabled = true;
+		}
+
+		private void ContinuedProcBody(Task<string> task) {
+			try {
+				string message;
+				if (task.Exception == null) {
+					message = string.Format("[{0}] {1}", DateTime.Now, task.Result);
+				} else {
+					message = task.Exception.Message;
+				}
+				this.label.Text = message;
+			} finally {
+				FinallyProc();
+			}
+		}
+
+		private void ContinuedProc(Task<string> task) {
+			// GUIスレッド上で処理を行う。
+			this.Invoke(new Action<Task<string>>(this.ContinuedProcBody), task);
 		}
 	}
 }

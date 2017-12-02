@@ -8,7 +8,7 @@
     <ProjectGuid>{73018246-7384-4ff4-8fe8-8099980467b0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>COBOL</RootNamespace>
+    <RootNamespace>AsyncSample.COBOL</RootNamespace>
     <AssemblyName>COBOL</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <MainEntryPoint>MAIN</MainEntryPoint>

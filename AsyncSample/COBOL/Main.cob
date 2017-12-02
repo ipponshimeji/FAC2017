@@ -7,7 +7,7 @@
            .
        REPOSITORY.
            CLASS CLASS-APPLICATION AS "System.Windows.Forms.Application"
-           CLASS CLASS-MAINFORM AS "COBOL.Form1"
+           CLASS CLASS-MAINFORM AS "AsyncSample.COBOL.Form1"
            CLASS CLASS-STATHREADATTRIBUTE AS "System.STAThreadAttribute"
            .
       
