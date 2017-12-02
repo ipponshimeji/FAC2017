@@ -12,8 +12,8 @@
 		protected override void Dispose(bool disposing) {
 			if (disposing && (components != null)) {
 				components.Dispose();
+				this.downloader.Dispose();
 			}
-			this.downloader.Dispose();
 			base.Dispose(disposing);
 		}
 

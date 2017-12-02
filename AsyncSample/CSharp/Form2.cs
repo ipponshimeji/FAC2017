@@ -21,7 +21,7 @@ namespace AsyncSample.CSharp {
 			InitializeComponent();
 		}
 
-		// asyncを無理やり展開したバージョンのイベントハンドラ
+		// async/awaitを無理やり書かないようにしたバージョン
 		private void button_Click(object sender, EventArgs e) {
 			this.button.Enabled = false;
 			try {
