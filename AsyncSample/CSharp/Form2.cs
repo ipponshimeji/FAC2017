@@ -22,10 +22,9 @@ namespace AsyncSample.CSharp {
 
 		// async/awaitを無理やり書かないようにしたバージョン
 		private void button_Click(object sender, EventArgs e) {
-			const string url = "http://www.msftncsi.com/ncsi.txt";
 			this.button.Enabled = false;
 			try {
-				this.downloader.DownloadText(url).ContinueWith(
+				this.downloader.DownloadText("http://www.msftncsi.com/ncsi.txt").ContinueWith(
 					new Action<Task<string>>(this.ContinuedProc)
 				);
 			} catch {
