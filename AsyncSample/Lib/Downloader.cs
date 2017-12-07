@@ -35,7 +35,7 @@ namespace AsyncSample.Lib {
 
 			// 以下の行を入れてわざと待たせるようにすると、
 			// 非同期に動作していることがGUI上から分かりやすい。
-			Thread.Sleep(3000);
+			await Task.Run(() => { Thread.Sleep(3000); });
 			return text;
 		}
 	}
