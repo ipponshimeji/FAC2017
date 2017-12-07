@@ -28,7 +28,7 @@ namespace AsyncSample.Lib {
 			string text;
 			using (HttpResponseMessage response = await httpClient.GetAsync(uri)) {
 				if (!response.IsSuccessStatusCode) {
-					throw new Exception(string.Format("Error: {0}", response.StatusCode));
+					throw new Exception($"Error: {response.StatusCode}");
 				}
 				text = await response.Content.ReadAsStringAsync();
 			}

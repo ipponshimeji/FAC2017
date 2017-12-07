@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AsyncSample.Lib;
 
@@ -20,12 +18,13 @@ namespace AsyncSample.CSharp {
 
 		private async void button_Click(object sender, EventArgs e) {
 			// 処理中はボタンを無効化し、二度押しを防ぐ。
+			const string url = "http://www.msftncsi.com/ncsi.txt";
 			this.button.Enabled = false;
 			try {
 				string message;
 				try {
-					string text = await this.downloader.DownloadText("http://www.msftncsi.com/ncsi.txt");
-					message = string.Format("[{0}] {1}", DateTime.Now, text);
+					string text = await this.downloader.DownloadText(url);
+					message = $"[{DateTime.Now}] {text}";
 				} catch (Exception exception) {
 					message = exception.Message;
 				}

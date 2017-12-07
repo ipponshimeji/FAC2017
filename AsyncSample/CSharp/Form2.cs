@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AsyncSample.Lib;
@@ -23,9 +22,12 @@ namespace AsyncSample.CSharp {
 
 		// async/awaitを無理やり書かないようにしたバージョン
 		private void button_Click(object sender, EventArgs e) {
+			const string url = "http://www.msftncsi.com/ncsi.txt";
 			this.button.Enabled = false;
 			try {
-				this.downloader.DownloadText("http://www.msftncsi.com/ncsi.txt").ContinueWith(new Action<Task<string>>(this.ContinuedProc));
+				this.downloader.DownloadText(url).ContinueWith(
+					new Action<Task<string>>(this.ContinuedProc)
+				);
 			} catch {
 				FinallyProc();
 				throw;
@@ -40,7 +42,7 @@ namespace AsyncSample.CSharp {
 			try {
 				string message;
 				if (task.Exception == null) {
-					message = string.Format("[{0}] {1}", DateTime.Now, task.Result);
+					message = $"[{DateTime.Now}] {task.Result}";
 				} else {
 					message = task.Exception.Message;
 				}

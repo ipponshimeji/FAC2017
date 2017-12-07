@@ -1049,7 +1049,7 @@
        PROCEDURE DIVISION USING BY VALUE sender e.
       *    前準備
       *    複雑な型パラメータをもつ型によるメソッドオーバーロードの解決に問題があるので、
-      *    Action<Task<string>>ではなく、Action<Task>引数で
+      *    ここではAction<Task<string>>ではなく、Action<Task>引数で
       *    Task.ContinueWith()を呼び出す。
            INVOKE DEL-ACTION-TASK "NEW" USING SELF N"CONTINUED-PROC" RETURNING WK-CONTINUED-PROC.
       
