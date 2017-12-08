@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Sample for the 9th day of FUJITSU Advent Calendar 2017")]
+[assembly: AssemblyProduct("Samples for the 9th day of FUJITSU Advent Calendar 2017")]
 [assembly: AssemblyCopyright("Copyright (C) 2017 Takamasa Uramoto")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
